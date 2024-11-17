@@ -1,0 +1,16 @@
+#configuração básica do Servidor NGINX
+server {
+  #listando a porta padrão 80 nos protocolos IPv4 e IPV6
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  #diretório padrão das páginas HTML do NGINX
+  root /var/www/html;
+  #nome e extensões suportadas dos arquivos index
+  index.htm index.html;
+  #nome padrão do servidor do NGINX
+  server_name  localhost;
+  #localização padrão das páginas de erros do NGINX
+  location / {
+    try_files $uri $uri/ =404;
+  }
+}
