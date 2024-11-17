@@ -59,7 +59,7 @@ RUN apt-get install vim git wget -y
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#copy
 #Documentação do NGINX: http://nginx.org/en/docs/beginners_guide.html
 #COPY: (Copy files and directories)
-COPY default /etc/nginx/sites-available/default
+COPY conf/default /etc/nginx/sites-available/default
 
 #criando o diretório de trabalho padrão do NGINX para a hospedagem de sites
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#workdir
@@ -75,7 +75,7 @@ VOLUME /var/www/html/
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#copy
 #Documentação do NGINX: http://nginx.org/en/docs/beginners_guide.html
 #COPY: (Copy files and directories)
-COPY index.html ./
+COPY conf/index.html ./
 
 #clonando os sites desenvolvidos em HTML do Github para o diretório de Document Root do NGINX
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#run
