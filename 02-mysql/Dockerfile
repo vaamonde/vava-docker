@@ -7,8 +7,8 @@
 #Instagram Procedimentos em TI: https://www.instagram.com/procedimentoem<br>
 #YouTUBE Bora Para Prática: https://www.youtube.com/boraparapratica<br>
 #Data de criação: 16/11/2024<br>
-#Data de atualização: 16/11/2024<br>
-#Versão: 0.01<br>
+#Data de atualização: 18/11/2024<br>
+#Versão: 0.02<br>
 #Testado e homologado no GNU/Linux Ubuntu Server 24.04.x LTS<br>
 #Testado e homologado no Docker-CE (Community Edition) 24.x<br>
 #Testado e homologado na Imagem do Docker Hub MySQL 9.1.x<br>
@@ -30,30 +30,6 @@ LABEL org.opencontainers.image.description="Servidor Database MySQL do Projeto V
 LABEL org.opencontainers.image.url="https://github.com/vaamonde/ubuntu-2404"
 LABEL org.opencontainers.image.source="https://github.com/vaamonde/vava-docker"
 LABEL org.opencontainers.image.documentation="https://github.com/vaamonde/ubuntu-2404/blob/main/05-services/01-vava-infra.md"
-
-#criando argumentos na imagem padrão do MySQL quando utilizar o comando apt
-#Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#arg
-#ARG (Use build-time variables)
-#Documentação do Debconf: https://manpages.debian.org/jessie/debconf-doc/debconf.7.en.html
-#opção da variável DEBIAN_FRONTEND: noninteractive (This is the anti-frontend. It never 
-#interacts with you at all, and makes the default answers be used for all questions.)
-ARG DEBIAN_FRONTEND=noninteractive
-
-#utilizando o comando apt para atualizar a imagem do MySQL
-#Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#run
-#RUN (Execute build commands)
-#opção do comando apt-get: update (Resynchronize the package index files from their sources), 
-#upgrade (Install the newest versions of all packages currently installed on the system), 
-#-y (yes confirmation)
-#opção do operador lógico &&: E lógico (AND)
-RUN apt-get update && apt-get upgrade -y
-
-#instalando os comandos vim, git e wget na imagem do MySQL
-#Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#run
-#RUN (Execute build commands)
-#opção do comando apt-get: install (install is followed by one or more package names), -y 
-#(yes confirmation)
-RUN apt-get install vim git wget -y
 
 #criando o diretório de trabalho padrão do MySQL para os banco de dados
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#workdir
