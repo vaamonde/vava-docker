@@ -47,6 +47,7 @@ VOLUME /var/lib/mysql/
 ENV MYSQL_ROOT_PASSWORD=pti@2018
 ENV MYSQL_USER=admin
 ENV MYSQL_PASSWORD=pti@2018
+ENV MYSQL_DATABASE=vavadb
 
 #criando o usuário Admin e setando os privilégios de acesso remoto no MySQL
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#run
