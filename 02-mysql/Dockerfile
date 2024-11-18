@@ -73,7 +73,3 @@ EXPOSE 3306
 #Documentação do NGINX: http://nginx.org/en/docs/switches.html
 #CMD (Specify default commands)
 CMD ["mysqld"]
-
-RUN mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-RUN mysql -u root -p$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';"
-RUN mysql -u root -p$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
