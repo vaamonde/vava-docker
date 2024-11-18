@@ -7,13 +7,14 @@
 #Instagram Procedimentos em TI: https://www.instagram.com/procedimentoem<br>
 #YouTUBE Bora Para Prática: https://www.youtube.com/boraparapratica<br>
 #Data de criação: 16/11/2024<br>
-#Data de atualização: 16/11/2024<br>
-#Versão: 0.01<br>
+#Data de atualização: 18/11/2024<br>
+#Versão: 0.02<br>
 #Testado e homologado no GNU/Linux Ubuntu Server 24.04.x LTS<br>
 #Testado e homologado no Docker-CE (Community Edition) 24.x<br>
 #Testado e homologado na Imagem do Docker Hub NGINX 1.27.x<br>
 
-#utilizando a Imagem Oficial do Docker Hub do NGINX para criar nessa imagem personalizada
+#utilizando a Imagem Oficial do Docker Hub do NGINX para criar nossa imagem personalizada
+#Imagem do Docker Hub: https://hub.docker.com/_/nginx
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#from
 #FROM (Create a new build stage from a base image)
 FROM nginx:latest
@@ -38,7 +39,7 @@ LABEL org.opencontainers.image.documentation="https://github.com/vaamonde/ubuntu
 #interacts with you at all, and makes the default answers be used for all questions.)
 ARG DEBIAN_FRONTEND=noninteractive
 
-#utilizar o comando apt para atualizar a imagem do NGINX
+#utilizando o comando apt para atualizar a imagem do NGINX
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#run
 #RUN (Execute build commands)
 #opção do comando apt-get: update (Resynchronize the package index files from their sources), 
@@ -74,7 +75,7 @@ VOLUME /var/www/html/
 #copiando o arquivo de html padrão para o diretório Document Root do NGINX
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#copy
 #Documentação do NGINX: http://nginx.org/en/docs/beginners_guide.html
-#COPY: (Copy files and directories)
+#COPY: (Copy files and directories),  ./ (Workdir default)
 COPY conf/index.html ./
 
 #clonando os sites desenvolvidos em HTML do Github para o diretório de Document Root do NGINX
@@ -82,7 +83,7 @@ COPY conf/index.html ./
 #RUN (Execute build commands)
 #Documentação do Git: https://git-scm.com/docs/git-clone
 #opção do comando git: clone (Clone a repository into a new directory), --depth=1 (Create a 
-#shallow clone with a history truncated to the specified number of commits)
+#shallow clone with a history truncated to the specified number of commits), ./ (Workdir default)
 RUN git clone --depth=1 https://github.com/andradejao/outlawgames ./
 RUN git clone --depth=1 https://github.com/camilajodai/protectpetz ./
 
