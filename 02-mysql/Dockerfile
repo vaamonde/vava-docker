@@ -59,9 +59,9 @@ ENV MYSQL_PASSWORD=pti@2018
 #Documentação do MySQL Server: https://dev.mysql.com/doc/refman/8.4/en/create-user.html
 #Documentação do MySQL Server: https://dev.mysql.com/doc/refman/8.4/en/grant.html
 #Documentação do MySQL Server: https://dev.mysql.com/doc/refman/8.4/en/flush.html
-RUN mysql -u root -p -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-RUN mysql -u root -p -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';"
-RUN mysql -u root -p -e "FLUSH PRIVILEGES;"
+RUN mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+RUN mysql -u root -p$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';"
+RUN mysql -u root -p$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
 #expondo a porta de acesso remoto do MySQL no Dockerfile
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#expose
