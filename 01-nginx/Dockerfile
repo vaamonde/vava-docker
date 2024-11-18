@@ -61,16 +61,17 @@ RUN apt-get install vim git wget -y
 #Documentação do NGINX: http://nginx.org/en/docs/beginners_guide.html
 #COPY: (Copy files and directories)
 COPY conf/default /etc/nginx/sites-available/default
+COPY conf/default.conf /etc/nginx/sites-available/default.conf
 
 #criando o diretório de trabalho padrão do NGINX para a hospedagem de sites
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#workdir
 #WORKDIR (Change working directory)
-WORKDIR /var/www/html/
+WORKDIR /usr/share/nginx/html
 
 #criando o ponto de montagem do volume da imagem padrão do NGINX
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#volume
 #VOLUME (Create volume mounts)
-VOLUME /var/www/html/
+VOLUME /usr/share/nginx/html
 
 #copiando o arquivo de html padrão para o diretório Document Root do NGINX
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#copy
@@ -83,9 +84,9 @@ COPY conf/index.html ./
 #RUN (Execute build commands)
 #Documentação do Git: https://git-scm.com/docs/git-clone
 #opção do comando git: clone (Clone a repository into a new directory), --depth=1 (Create a 
-#shallow clone with a history truncated to the specified number of commits), ./ (Workdir default)
-RUN git clone --depth=1 https://github.com/andradejao/outlawgames ./
-RUN git clone --depth=1 https://github.com/camilajodai/protectpetz ./
+#shallow clone with a history truncated to the specified number of commits).
+RUN git clone --depth=1 https://github.com/andradejao/outlawgames
+RUN git clone --depth=1 https://github.com/camilajodai/protectpetz
 
 #alterando as permissões de Dono e Grupo dos diretórios dos sites clonados do Github
 #Documentação do Docker-CE: https://docs.docker.com/reference/dockerfile/#run
